@@ -1,0 +1,21 @@
+{
+    "name": "chrise-he/youshu-json",
+    "type": "library",
+    "authors": [
+        {
+            "name": "hejinlong",
+            "email": "hejinlong@testin.cn"
+        }
+    ],
+    "require": {
+        "netresearch/jsonmapper": "*",
+        "adbario/php-dot-notation": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "YoushuJson\\": "src",
+            "YoushuJson\\Model\\": "src/model",
+            "YoushuJson\\Components\\": "src/component"
+        }
+    }
+}
