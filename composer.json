@@ -1,6 +1,7 @@
 {
     "name": "hide-in-code/youshu-json",
     "type": "library",
+    "minimum-stability": "dev",
     "authors": [
         {
             "name": "hejinlong",
