@@ -58,4 +58,19 @@ class YsJson
     {
         return pathinfo($this->imgUrl)['basename'];
     }
+
+    public function load($json)
+    {
+        $mapper = new \JsonMapper();
+        $obj = $mapper->map(json_decode($json), new static());
+        $class = new \ReflectionClass($obj);
+        foreach ($class->getProperties(\ReflectionProperty::IS_PUBLIC) as $property) {
+            foreach ($obj as $key => $item) {
+                if ($key == $property->getName()) {
+                    $property->setValue($this, $item);
+                    break;
+                }
+            }
+        }
+    }
 }
