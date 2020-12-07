@@ -38,4 +38,14 @@ class YsMark
     {
         return $this->property;
     }
+
+    public function getPropName($propIndex, $valueIndex)
+    {
+        return $this->property[$propIndex][$valueIndex]->pname;
+    }
+
+    public function getPropTitle($propIndex, $valueIndex)
+    {
+        return $this->property[$propIndex][$valueIndex]->ptitle;
+    }
 }
