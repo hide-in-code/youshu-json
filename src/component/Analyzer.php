@@ -45,8 +45,8 @@ class Analyzer
      */
     public static function mappingAnalyzeGetVal($obj, $mapping_val)
     {
-        if (!is_string($mapping_val) && !is_numeric($mapping_val)) {
-            throw new \Exception("mapping_val 必须是一个字符串或数字");
+        if ($mapping_val instanceof \Closure) {//闭包
+            return $mapping_val($obj);
         }
 
         if (strpos($mapping_val, "@") === false) {//未加设置

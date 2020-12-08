@@ -36,20 +36,22 @@ class YsEasyJson extends YsJson
 
     public function transformat()
     {
-        $this->mappingArray = json_decode(json_encode($this->mapping), true);
-        $this->markMappingArray = json_decode(json_encode($this->markMapping), true);
-        unset($this->mappingArray['marks_filed']);
+//        $this->mappingArray = json_decode(json_encode($this->mapping), true);
+//        $this->markMappingArray = json_decode(json_encode($this->markMapping), true);
+//        unset($this->mappingArray['marks_filed']);
+
+        unset($this->mappingArray->marks_filed);
 
         $ret = [];
         $retDot = new Dot($ret);
-        foreach ($this->mappingArray as $key => $value) {
+        foreach ($this->mapping as $key => $value) {
             $retDot->set($key, Analyzer::mappingAnalyzeGetVal($this, $value));
         }
 
         $marks = [];
         foreach ($this->getAllMarks() as $mark) {
             $tmpDot = new Dot([]);
-            foreach ($this->markMappingArray as $key => $value) {
+            foreach ($this->markMapping as $key => $value) {
                 $tmpDot->set($key, Analyzer::mappingAnalyzeGetVal($mark, $value));
             }
 

@@ -17,7 +17,10 @@ $ysjson->mapping = new \YoushuJson\Model\YsMapping([
     "image_path" => '@getFileName()',
     "info.width" => '@width',
     "info.height" => '@height',
-    "info.mark" => '@markMapping'
+    "info.mark" => '@markMapping',
+    "test" => function($data) {
+        return $data->width;
+    }
 ]);
 
 $ysjson->markMapping = new \YoushuJson\Model\YsMarkMapping([
@@ -29,8 +32,17 @@ $ysjson->markMapping = new \YoushuJson\Model\YsMarkMapping([
 
 $myjson = $ysjson->transformat();
 var_dump($myjson);
+exit;
 
-//$cl = new stdClass();
-//$cl->aa = '111';
-//
-//var_dump($cl);
+$cl = new stdClass();
+$cl->aa = '111';
+
+var_dump($cl);
+
+$example = function ($message) {
+    var_dump($message);
+};
+
+var_dump($example);
+
+echo $example("aaa");
