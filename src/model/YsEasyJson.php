@@ -36,10 +36,6 @@ class YsEasyJson extends YsJson
 
     public function transformat()
     {
-//        $this->mappingArray = json_decode(json_encode($this->mapping), true);
-//        $this->markMappingArray = json_decode(json_encode($this->markMapping), true);
-//        unset($this->mappingArray['marks_filed']);
-
         unset($this->mappingArray->marks_filed);
 
         $ret = [];
