@@ -19,7 +19,8 @@ $ysjson->mapping = new \YoushuJson\Model\YsMapping([
     "info.height" => '@height',
     "info.mark" => '@markMapping',
     "test" => function($data) {
-        return $data->width;
+        $marks = $data->getAllMarks();
+        var_dump($marks);exit;
     }
 ]);
 

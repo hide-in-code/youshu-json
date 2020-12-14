@@ -61,6 +61,7 @@ class YsJson
 
     public function load($json)
     {
+        $this->preLoad($json);
         $mapper = new \JsonMapper();
         $obj = $mapper->map(json_decode($json), new static());
         $class = new \ReflectionClass($obj);
@@ -72,5 +73,22 @@ class YsJson
                 }
             }
         }
+    }
+
+    protected function preLoad(&$json)
+    {
+        $info = json_decode($json, true);
+        foreach ($info['marks'] as &$mark) {
+            if ($mark['type'] == "rect") {
+                $mark['point'] = $mark['points'];
+            }
+        }
+
+        $json = json_encode($info);
+    }
+
+    public function getAllGroup($ret_index = false)
+    {
+        //todo
     }
 }

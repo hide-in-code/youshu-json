@@ -29,18 +29,18 @@ class YsEasyJson extends YsJson
      */
     public $markMapping;
 
-    public $mappingArray = [];
-
-    public $markMappingArray = [];
-
-
     public function transformat()
     {
-        unset($this->mappingArray->marks_filed);
+        if (!$this->mapping) {
+            throw new \Exception("未设置 mapping");
+        }
 
         $ret = [];
         $retDot = new Dot($ret);
         foreach ($this->mapping as $key => $value) {
+            if ($key == "marks_filed") {
+                continue;
+            }
             $retDot->set($key, Analyzer::mappingAnalyzeGetVal($this, $value));
         }
 
@@ -78,7 +78,7 @@ class YsMapping extends \stdClass
         }
 
         if ($this->marks_filed == "") {
-            throw new \Exception("YsMapping 必须设置一个用于存储所有标注结果的字段");
+            throw new \Exception("YsMapping 必须设置一个用于存储所有标注结果的字段：markMapping");
         }
     }
 }
