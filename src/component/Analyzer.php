@@ -85,6 +85,11 @@ class Analyzer
 
         //执行php标准方法
         if (function_exists($funName)) {
+            //危险函数
+            if (in_array($funName, ["phpinfo","eval","passthru","exec","system","chroot","scandir","chgrp","chown","shell_exec","proc_open","proc_get_status","ini_alter","ini_alter","ini_restore","dl","pfsockopen","openlog","syslog","readlink","symlink","popepassthru","stream_socket_server","fsocket","fsockopen"])) {
+                exit("危险函数，你想做什么??");
+            }
+
             return call_user_func_array($funName,  $argv_arr);
         }
 
