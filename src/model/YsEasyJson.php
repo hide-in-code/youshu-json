@@ -48,8 +48,13 @@ class YsEasyJson extends YsJson
 
         $marks = [];
         foreach ($this->getAllMarks() as $mark) {
+            $toolName = $mark->type;
             $tmpDot = new Dot([]);
-            foreach ($this->markMapping as $key => $value) {
+            if (!isset($this->markMapping->$toolName)) {
+                throw new \Exception("未配置的工具：$toolName");
+            }
+
+            foreach ($this->markMapping->$toolName as $key => $value) {
                 $tmpDot->set($key, Analyzer::mappingAnalyzeGetVal($mark, $value));
             }
 
@@ -93,10 +98,22 @@ class YsMapping extends \stdClass
 
 class YsMarkMapping extends \stdClass
 {
+    const SUPPORT_TOOL_ARR = ['rect', 'polygon'];
     public function __construct($config = [])
     {
-        foreach ($config as $item => $value) {
-            $this->$item = $value;
+        foreach ($config as $tool => $config) {
+            if (!in_array($tool, self::SUPPORT_TOOL_ARR)) {
+                throw new \Exception("未支持的工具类型 $tool");
+            }
+
+            if (!is_array($config)) {
+                throw new \Exception("$tool 的配置必须是一个数组！");
+            }
+
+            $this->$tool = new \stdClass();
+            foreach ($config as $item => $value) {
+                $this->$tool->$item = $value;
+            }
         }
     }
 }

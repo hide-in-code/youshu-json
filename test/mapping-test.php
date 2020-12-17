@@ -31,18 +31,20 @@ $ysjson->mapping = new \YoushuJson\Model\YsMapping([
 ]);
 
 $ysjson->markMapping = new \YoushuJson\Model\YsMarkMapping([
-    "class" => '@property.0.0.ptitle',
-    "point" => '@point',
-//    "local" => '@property.0.0.pname',
-//    "abc" => "@getAllPoints()",
-//    "abddd" => "@getAllPoints(true)",
-//    "area" => 0,
-//    "prop" => "@proptest()",
-//    "points.left" => "@floor(@point.0.x)",
-//    "points.top" => "@floor(@point.0.y)",
-//    "points.right" => "@floor(@point.2.x)",
-//    "points.bottom" => "@floor(@point.2.y)",
-    "ttt" => '@YoushuJson\Components\Tool::fff(@point))'
+    'polygon' => [
+        "class" => '@property.0.0.ptitle',
+        "point" => '@point',
+        "local" => '@property.0.0.pname',
+        "abc" => "@getAllPoints()",
+        "abddd" => "@getAllPoints(true)",
+        "area" => 0,
+        "prop" => "@proptest()",
+        "points.left" => "@floor(@point.0.x)",
+        "points.top" => "@floor(@point.0.y)",
+        "points.right" => "@floor(@point.2.x)",
+        "points.bottom" => "@floor(@point.2.y)",
+        "ttt" => '@YoushuJson\Components\Tool::fff(@point))'
+    ],
 ]);
 
 
