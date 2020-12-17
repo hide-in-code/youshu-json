@@ -29,6 +29,8 @@ class YsEasyJson extends YsJson
      */
     public $markMapping;
 
+    public $YsEasyArray = [];
+
     public function transformat()
     {
         if (!$this->mapping) {
@@ -55,7 +57,13 @@ class YsEasyJson extends YsJson
         }
 
         $retDot->set($this->mapping->marks_filed, $marks);
-        return $retDot->toJson();
+        return $retDot->toJson(null, [JSON_UNESCAPED_UNICODE]);
+    }
+
+    public function load($json)
+    {
+        parent::load($json);
+        $this->YsEasyArray = json_decode($json, true);
     }
 }
 
